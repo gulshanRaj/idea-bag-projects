@@ -1,0 +1,26 @@
+.btn-group .button {
+    width: 50%;
+    background-color: #28C0C6; /* Blue */
+    border: 1px solid gray;
+    border-radius: 4px;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+.btn-group .button:hover {
+    background-color: #498486;
+}
+
+#calculatorDisplay {
+  width: 180px;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  background-color: #B0E9EA;
+}
