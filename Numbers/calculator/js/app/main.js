@@ -1,3 +1,5 @@
+require(['stack']);
+
 var calculator = {
   operateOn: function(input) {
     var inputAr = this.format(input);
@@ -10,8 +12,13 @@ var calculator = {
     inputAr = input.split(' ').filter( (w) => w != '');
     return inputAr;
   },
-  infixToPostfix: function() {
+  infixToPostfix: function(strAr) {
     //TODO convert infix to postfix
+
+    var st = new Stack();
+    for(var i=0; i<strAr.length; i++) {
+      if()
+    }
   },
   evaluatePostfix: function() {
     //TODO solve the expression
