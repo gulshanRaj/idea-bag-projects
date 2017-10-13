@@ -4,7 +4,6 @@ var calculator = {
   operateOn: function(input) {
     var inputAr = this.format(input);
     var postfixStr = this.infixToPostfix(inputAr);
-    console.log(postfixStr);
     return this.evaluatePostfix(postfixStr);
   },
   format: function(input) {
@@ -15,7 +14,7 @@ var calculator = {
   },
   infixToPostfix: function(strAr) {
     // convert infix to postfix
-    //ISSUE -ve no.s
+
     var postfixAr=[];
     var stack = new Stack();
     var nextNumberNegate = false; //-ve number bug
@@ -57,8 +56,40 @@ var calculator = {
 
     return postfixAr;
   },
-  evaluatePostfix: function() {
-    //TODO solve the expression
+  evaluatePostfix: function(strAr) {
+    //solve the expression
+
+    var stack = new Stack();
+
+    for(var i=0; i<strAr.length; i++) {
+      if(helper.isOperand(strAr[i]) ) { //if operand push into postfix
+        stack.push( Number(strAr[i]) );
+      }
+      else if(strAr[i]==='+') {
+        var a = stack.pop();
+        var b = stack.pop();
+        stack.push(a+b);
+      }
+      else if(strAr[i]==='-') {
+        var a = stack.pop();
+        var b = stack.pop();
+        stack.push(b-a);
+      }
+      else if(strAr[i]==='*') {
+        var a = stack.pop();
+        var b = stack.pop();
+        stack.push(a*b);
+      }
+      else if(strAr[i]==='/') {
+        var a = stack.pop();
+        var b = stack.pop();
+        stack.push(b/a);
+      }
+      else {
+        console.log("unidentified symbol in stack");
+      }
+    }
+  return stack.pop();
   }
 };
 
