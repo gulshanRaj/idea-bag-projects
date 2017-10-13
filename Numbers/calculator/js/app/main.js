@@ -18,15 +18,19 @@ var calculator = {
     //ISSUE -ve no.s
     var postfixAr=[];
     var stack = new Stack();
-    //var nextNumberNegate = false; //-ve number bug
+    var nextNumberNegate = false; //-ve number bug
 
     for(var i=0; i<strAr.length; i++) {
       if(helper.isOperand(strAr[i])) { //if operand push into postfix
-        postfixAr.push(strAr[i]);
+        if(nextNumberNegate) {
+          postfixAr.push('-'+strAr[i]);
+          nextNumberNegate = false;
+        }
+        else postfixAr.push(strAr[i]);
       }
       else if(stack.isEmpty() || stack.top()=='(') {
-
-        stack.push(strAr[i]);
+        if(strAr[i]=='-') nextNumberNegate = true;
+        else stack.push(strAr[i]);
       }
       else if(strAr[i]=='(') {
         stack.push(strAr[i]);
