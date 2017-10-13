@@ -4,6 +4,7 @@ var calculator = {
   operateOn: function(input) {
     var inputAr = this.format(input);
     var postfixStr = this.infixToPostfix(inputAr);
+    console.log(postfixStr);
     return this.evaluatePostfix(postfixStr);
   },
   format: function(input) {
@@ -13,12 +14,44 @@ var calculator = {
     return inputAr;
   },
   infixToPostfix: function(strAr) {
-    //TODO convert infix to postfix
+    // convert infix to postfix
+    //ISSUE -ve no.s
+    var postfixAr=[];
+    var stack = new Stack();
+    //var nextNumberNegate = false; //-ve number bug
 
-    var st = new Stack();
     for(var i=0; i<strAr.length; i++) {
-      if()
+      if(helper.isOperand(strAr[i])) { //if operand push into postfix
+        postfixAr.push(strAr[i]);
+      }
+      else if(stack.isEmpty() || stack.top()=='(') {
+
+        stack.push(strAr[i]);
+      }
+      else if(strAr[i]=='(') {
+        stack.push(strAr[i]);
+      }
+      else if(strAr[i]==')') {
+        while(stack.top() != '(') {
+          postfixAr.push(stack.pop());
+        }
+        stack.pop();
+      }
+      else if(strAr[i]=='*' || strAr[i]=='/') {
+        stack.push(strAr[i]);
+      }
+      else {
+        while(!stack.isEmpty() && (stack.top()=='*' || stack.top()=='/')) {
+          postfixAr.push(stack.pop());
+        }
+        stack.push(strAr[i]);
+      }
     }
+    while(!stack.isEmpty()) {
+      postfixAr.push(stack.pop());
+    }
+
+    return postfixAr;
   },
   evaluatePostfix: function() {
     //TODO solve the expression
@@ -44,3 +77,11 @@ var view = {
     calculatorDisplay.value = displayString;
   }
 };
+
+var helper = {//other functions that were helpful
+  operators: ['(', ')', '+', '-', '*', '/'],
+
+  isOperand: function(word) {
+    return this.operators.indexOf(word)===(-1);
+  }
+}

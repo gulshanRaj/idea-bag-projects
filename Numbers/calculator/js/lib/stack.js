@@ -20,7 +20,7 @@ class Stack {
   top() {
     if(this.isEmpty()) return undefined;
     //else
-    return this.stack[this.stackTop()];
+    return this.stack[this.stackTop];
   }
 
   isEmpty() {
