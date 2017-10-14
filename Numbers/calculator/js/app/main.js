@@ -102,7 +102,7 @@ var handler = {
     //handle given expression
     var calculatorDisplay = document.getElementById('calculatorDisplay');
     var calculatorDisplayOutput = calculator.operateOn(calculatorDisplay.value);
-    displayResult(calculatorDisplayOutput);
+    view.displayResult(calculatorDisplayOutput);
   }
 };
 
@@ -120,3 +120,7 @@ var helper = {//other functions that were helpful
     return this.operators.indexOf(word)===(-1);
   }
 }
+
+//event linsteners
+var clsButton = document.getElementById('clsButton').addEventListener('click', handler.clear );
+var ansButton = document.getElementById('ansButton').addEventListener('click', handler.getAns );
