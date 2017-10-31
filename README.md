@@ -1,2 +1,2 @@
 # idea-bag-projects
-Projects on ideas given in Idea Bag app for android
+Implementation of some projects from Idea Bag app for android
